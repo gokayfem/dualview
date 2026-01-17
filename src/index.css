@@ -1,0 +1,565 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #0d0d0d;
+  --color-surface: #1a1a1a;
+  --color-surface-hover: #242424;
+  --color-border: #333333;
+  --color-border-hover: #444444;
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #b0b0b0;
+  --color-text-muted: #666666;
+  --color-accent: #ff5722;
+  --color-accent-hover: #e64a19;
+  --color-secondary: #cddc39;
+  --color-secondary-hover: #c0ca33;
+  --color-success: #cddc39;
+  --color-warning: #ff9800;
+  --color-error: #f44336;
+
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-border-hover);
+}
+
+/* Timeline specific styles */
+.timeline-track {
+  @apply bg-surface;
+}
+
+.timeline-clip {
+  @apply bg-accent/20 border border-accent/40 cursor-grab;
+}
+
+.timeline-clip:active {
+  @apply cursor-grabbing;
+}
+
+.timeline-playhead {
+  @apply bg-accent w-0.5;
+}
+
+/* Override all rounded corners to be sharp */
+* {
+  border-radius: 0 !important;
+}
+
+/* =====================================================
+   LAWS OF UX - GLOBAL STYLES
+   ===================================================== */
+
+/* Doherty Threshold: All interactions feel instant (<400ms) */
+* {
+  transition-property: background-color, border-color, color, opacity, transform, box-shadow;
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Fitts's Law: Larger click targets have better affordance */
+button, [role="button"], a {
+  min-height: 32px;
+  min-width: 32px;
+}
+
+/* Aesthetic-Usability Effect: Smooth, polished interactions */
+button:active:not(:disabled), [role="button"]:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+/* Focus states for accessibility (Jakob's Law - follows conventions) */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Custom animations */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-down {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes zoom-in-95 {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-in {
+  animation: fade-in 100ms ease-out, zoom-in-95 100ms ease-out;
+}
+
+.animate-slide-up {
+  animation: slide-up 200ms ease-out;
+}
+
+.animate-slide-down {
+  animation: slide-down 200ms ease-out;
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 2s ease-in-out infinite;
+}
+
+/* Subtle surface alt color for cards */
+.bg-surface-alt {
+  background-color: #1f1f1f;
+}
+
+/* Doherty Threshold - Make interactions feel instant */
+.transition-instant {
+  transition-duration: 50ms;
+}
+
+/* Aesthetic-Usability Effect - Subtle glow for active elements */
+.glow-accent {
+  box-shadow: 0 0 10px rgba(255, 87, 34, 0.3);
+}
+
+.glow-secondary {
+  box-shadow: 0 0 10px rgba(205, 220, 57, 0.3);
+}
+
+/* Von Restorff Effect - Make primary actions stand out */
+.primary-glow:hover {
+  box-shadow: 0 0 20px rgba(255, 87, 34, 0.4);
+}
+
+/* Peak-End Rule - Satisfying completion states */
+@keyframes success-pop {
+  0% { transform: scale(0.95); opacity: 0; }
+  50% { transform: scale(1.02); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.animate-success {
+  animation: success-pop 300ms ease-out;
+}
+
+/* Goal-Gradient Effect - Progress bars */
+.progress-bar {
+  transition: width 300ms ease-out;
+}
+
+/* Law of Common Region - Card styling */
+.ux-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  padding: 1rem;
+}
+
+.ux-card-interactive:hover {
+  border-color: var(--color-border-hover);
+  background: var(--color-surface-hover);
+}
+
+/* Zeigarnik Effect - Incomplete indicators */
+.incomplete-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--color-warning);
+  border-radius: 50%;
+  animation: pulse-subtle 2s ease-in-out infinite;
+}
+
+/* Loading shimmer */
+.shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Selection highlight */
+.selected-ring {
+  box-shadow: inset 0 0 0 2px var(--color-accent);
+}
+
+/* Tooltip arrow */
+.tooltip-arrow {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: var(--color-surface);
+  transform: rotate(45deg);
+  border: 1px solid var(--color-border);
+}
+
+/* Empty state styling */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+.empty-state-icon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+
+/* Track color coding */
+.track-a { border-left: 3px solid var(--color-accent); }
+.track-b { border-left: 3px solid var(--color-secondary); }
+.track-audio { border-left: 3px solid var(--color-text-muted); }
+
+/* Keyboard shortcut badges */
+.kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.125rem 0.375rem;
+  font-size: 10px;
+  font-family: var(--font-mono);
+  background: var(--color-surface-alt);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+}
+
+/* =====================================================
+   SUBTLE DEPTH - Aesthetic-Usability Effect
+   ===================================================== */
+
+/* Panel depth - creates visual hierarchy */
+.depth-panel {
+  background: linear-gradient(180deg, var(--color-surface) 0%, rgba(26, 26, 26, 0.95) 100%);
+  box-shadow:
+    0 1px 0 0 rgba(255, 255, 255, 0.03) inset,
+    0 -1px 0 0 rgba(0, 0, 0, 0.1) inset;
+}
+
+/* Card with subtle lift */
+.depth-card {
+  background: var(--color-surface);
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.3),
+    0 1px 0 0 rgba(255, 255, 255, 0.03) inset;
+}
+
+.depth-card:hover {
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.4),
+    0 1px 0 0 rgba(255, 255, 255, 0.05) inset;
+}
+
+/* Inset/pressed effect */
+.depth-inset {
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.3) inset,
+    0 -1px 0 rgba(255, 255, 255, 0.02) inset;
+}
+
+/* Floating element */
+.depth-float {
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.5),
+    0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Subtle gradient backgrounds */
+.bg-gradient-surface {
+  background: linear-gradient(180deg,
+    var(--color-surface) 0%,
+    rgba(26, 26, 26, 0.8) 100%
+  );
+}
+
+.bg-gradient-accent {
+  background: linear-gradient(135deg,
+    rgba(255, 87, 34, 0.15) 0%,
+    rgba(255, 87, 34, 0.05) 100%
+  );
+}
+
+.bg-gradient-secondary {
+  background: linear-gradient(135deg,
+    rgba(205, 220, 57, 0.15) 0%,
+    rgba(205, 220, 57, 0.05) 100%
+  );
+}
+
+/* Divider with depth */
+.divider-depth {
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    var(--color-border) 20%,
+    var(--color-border) 80%,
+    transparent 100%
+  );
+}
+
+/* Glow effects for active states */
+.glow-active {
+  box-shadow: 0 0 0 1px var(--color-accent), 0 0 12px rgba(255, 87, 34, 0.2);
+}
+
+/* Soft inner highlight for buttons */
+button:not(:disabled):active {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) inset;
+}
+
+/* Header depth */
+header {
+  background: linear-gradient(180deg,
+    var(--color-surface) 0%,
+    rgba(26, 26, 26, 0.98) 100%
+  );
+  box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.02) inset;
+}
+
+/* Sidebar depth */
+aside {
+  background: linear-gradient(90deg,
+    var(--color-surface) 0%,
+    rgba(26, 26, 26, 0.95) 100%
+  );
+}
+
+/* Modal overlay */
+.modal-overlay {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0.7) 0%,
+    rgba(0, 0, 0, 0.85) 100%
+  );
+}
+
+/* =====================================================
+   MOBILE RESPONSIVENESS
+   ===================================================== */
+
+/* Mobile-first touch targets (44px minimum per Apple/Google guidelines) */
+@media (max-width: 768px) {
+  button, [role="button"], a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Larger touch areas for interactive elements */
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 12px;
+  }
+}
+
+/* Mobile drawer animation */
+@keyframes slide-in-left {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes slide-out-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
+
+@keyframes fade-in-bg {
+  from { background-color: transparent; }
+  to { background-color: rgba(0, 0, 0, 0.5); }
+}
+
+.animate-slide-in-left {
+  animation: slide-in-left 200ms ease-out forwards;
+}
+
+.animate-slide-out-left {
+  animation: slide-out-left 200ms ease-in forwards;
+}
+
+/* Mobile drawer overlay */
+.mobile-drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 40;
+  animation: fade-in-bg 200ms ease-out;
+}
+
+/* Mobile drawer */
+.mobile-drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 85%;
+  max-width: 320px;
+  z-index: 50;
+  background: var(--color-surface);
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.5);
+}
+
+/* Hide scrollbar on mobile for cleaner look */
+@media (max-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+}
+
+/* Mobile menu button */
+.mobile-menu-btn {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-btn {
+    display: flex;
+  }
+}
+
+/* Hide on mobile */
+.hide-mobile {
+  display: flex;
+}
+
+@media (max-width: 768px) {
+  .hide-mobile {
+    display: none !important;
+  }
+}
+
+/* Show only on mobile */
+.show-mobile {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .show-mobile {
+    display: flex;
+  }
+}
+
+/* Mobile header adjustments */
+@media (max-width: 768px) {
+  header {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+}
+
+/* Mobile timeline */
+@media (max-width: 768px) {
+  .timeline-mobile-compact {
+    height: 120px !important;
+  }
+
+  .timeline-mobile-compact .h-16 {
+    height: 40px !important;
+  }
+}
+
+/* Prevent body scroll when drawer is open */
+.body-no-scroll {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+}
+
+/* Safe area for notched devices */
+@supports (padding: env(safe-area-inset-bottom)) {
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .safe-area-top {
+    padding-top: env(safe-area-inset-top);
+  }
+}
+
+/* Mobile mode selector in dropdown */
+.mobile-mode-menu {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  z-index: 60;
+  max-height: 70vh;
+  overflow-y: auto;
+  animation: slide-up 200ms ease-out;
+}
+
+/* Mobile floating action button */
+.mobile-fab {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 56px;
+  height: 56px;
+  background: var(--color-accent);
+  box-shadow: 0 4px 12px rgba(255, 87, 34, 0.4);
+  z-index: 30;
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-fab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

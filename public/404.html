@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Not Found | DualView</title>
+  <meta name="description" content="The page you're looking for doesn't exist. Return to DualView to compare images, videos, audio, and AI prompts.">
+  <meta name="robots" content="noindex, follow">
+  
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  
+  <style>
+    :root {
+      --color-background: #0d0d0d;
+      --color-surface: #1a1a1a;
+      --color-border: #333333;
+      --color-text-primary: #ffffff;
+      --color-text-secondary: #b0b0b0;
+      --color-accent: #ff5722;
+      --color-secondary: #cddc39;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background-color: var(--color-background);
+      color: var(--color-text-primary);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .error-code {
+      font-size: 8rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--color-accent), var(--color-secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+      color: var(--color-text-primary);
+    }
+
+    p {
+      color: var(--color-text-secondary);
+      max-width: 400px;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    .actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    a {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: 4px;
+      transition: all 0.2s;
+    }
+
+    .primary {
+      background: var(--color-accent);
+      color: white;
+    }
+
+    .primary:hover {
+      background: #e64a19;
+    }
+
+    .secondary {
+      background: var(--color-surface);
+      color: var(--color-text-primary);
+      border: 1px solid var(--color-border);
+    }
+
+    .secondary:hover {
+      border-color: var(--color-accent);
+    }
+
+    .links {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .links p {
+      font-size: 0.875rem;
+      margin-bottom: 1rem;
+    }
+
+    .links a {
+      padding: 0.5rem 1rem;
+      font-size: 0.875rem;
+      background: none;
+      border: none;
+      color: var(--color-accent);
+    }
+
+    .links a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="error-code">404</div>
+  <h1>Page Not Found</h1>
+  <p>The page you're looking for doesn't exist or has been moved. Let's get you back on track.</p>
+  
+  <div class="actions">
+    <a href="/" class="primary">Open DualView</a>
+    <a href="/blog/" class="secondary">Browse Blog</a>
+  </div>
+
+  <div class="links">
+    <p>Looking for something specific?</p>
+    <a href="/blog/guides/">Guides</a>
+    <a href="/blog/ai-tools/">AI Tools</a>
+    <a href="/blog/industry/">Industry</a>
+  </div>
+</body>
+</html>
