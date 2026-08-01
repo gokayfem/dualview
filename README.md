@@ -730,6 +730,26 @@ src/
 
 ---
 
+<details>
+<summary><strong>Cite this project</strong></summary>
+
+If DualView supports your work, please cite the software. GitHub also provides
+ready-to-copy APA and BibTeX entries via **Cite this repository**.
+
+```bibtex
+@software{Aydogan_DualView_2026,
+  author  = {Aydoğan, Gökay},
+  title   = {DualView},
+  version = {1.0.0},
+  year    = {2026},
+  url     = {https://github.com/gokayfem/dualview}
+}
+```
+
+[ORCID](https://orcid.org/0000-0002-2343-9433) · [Citation metadata](CITATION.cff)
+
+</details>
+
 ## 📄 License
 
 MIT License - see [LICENSE](LICENSE) for details.
