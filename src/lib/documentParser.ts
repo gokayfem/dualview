@@ -8,6 +8,7 @@ import type { DocumentMetadata, ParsedDocumentContent, ParsedSheet, ParsedPDFPag
 import Papa from 'papaparse'
 import * as XLSX from 'xlsx'
 import mammoth from 'mammoth'
+import { sanitizeDocumentHTML } from './sanitizeDocumentHTML'
 import * as pdfjsLib from 'pdfjs-dist'
 
 // Configure PDF.js worker
@@ -116,7 +117,7 @@ export async function parseDOCX(file: File): Promise<DocumentMetadata> {
   const result = await mammoth.convertToHtml({ arrayBuffer })
   const textResult = await mammoth.extractRawText({ arrayBuffer })
 
-  const html = result.value
+  const html = sanitizeDocumentHTML(result.value)
   const text = textResult.value
 
   // Count words and paragraphs
