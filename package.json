@@ -24,7 +24,7 @@
     "clsx": "^2.1.1",
     "diff": "^8.0.3",
     "gif.js-upgrade": "^0.2.1",
-    "jspdf": "^4.0.0",
+    "jspdf": "^4.2.1",
     "lucide-react": "^0.562.0",
     "mammoth": "^1.11.0",
     "mp4-muxer": "^5.2.2",
@@ -35,7 +35,7 @@
     "tailwind-merge": "^3.4.0",
     "three": "^0.182.0",
     "uuid": "^13.0.0",
-    "xlsx": "^0.18.5",
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz",
     "zustand": "^5.0.9"
   },
   "devDependencies": {
@@ -53,10 +53,10 @@
     "eslint-plugin-react-refresh": "^0.4.24",
     "globals": "^16.5.0",
     "postcss": "^8.5.6",
-    "sharp": "^0.34.5",
+    "sharp": "^0.35.5",
     "tailwindcss": "^4.1.18",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.46.4",
-    "vite": "^7.2.4"
+    "vite": "^7.3.8"
   }
 }
